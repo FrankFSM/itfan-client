@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
+
+  <link href="css/signin.css" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+<div class="bgcolor">
+  <div class="container">
+
+    <div th:if="${param.logout}">
+      You have been logged out.
+    </div>
+    <form class="form-signin" th:action="@{/regist}" method="post">
+      <div class="panel panel-default">
+        <h2 class="form-signin-heading">Regist</h2>
+        <h4 th:if="${param.error}" style="color:red">
+          Invalid username and password.
+        </h4>
+        <label for="userName" class="sr-only">Email address</label>
+        <input type="text" id="userName" class="form-control" name="userName" placeholder="UserName"
+               required="required" autofocus="autofocus"/>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control"
+               placeholder="Password" required="required"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Regist</button>
+      </div>
+    </form>
+
+  </div> <!-- /container -->
+</div>
+
+</body>
+</html>

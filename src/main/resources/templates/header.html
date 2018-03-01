@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- following menu-->
+<div class="ui fixed inverted big menu" th:fragment="fmenu">
+  <div class="ui container">
+    <a href="/" class="item">首页</a>
+    <a href="/chat" class="item">畅聊</a>
+    <a href="/analysis" class="item">解析</a>
+    <a href="/searchView" class="item">搜索</a>
+    <div class="ui right-absolute buttons" style="margin-top: 5px;margin-right: 30px">
+      <a class="ui button" th:unless="${#httpServletRequest.remoteUser}" th:href="@{/registPage}">注册</a>
+      <a class="ui button" th:unless="${#httpServletRequest.remoteUser == null}" th:text="${#httpServletRequest.remoteUser}"></a>
+      <div class="or"></div>
+      <a class="ui positive button" th:unless="${#httpServletRequest.remoteUser}" th:href="@{/login}">登录</a>
+      <a class="ui positive button" th:unless="${#httpServletRequest.remoteUser == null}"
+         th:href="@{/logout}">退出</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar big menu" th:fragment="smenu">
+  <a href="/" class="item">首页</a>
+  <a href="@{/chat}" class="item">畅聊</a>
+  <a href="/analysis" class="item">解析</a>
+  <a href="/searchView" class="item">搜索</a>
+  <div class="ui right-absolute buttons" style="margin-top: 5px;margin-right: 30px">
+    <a class="ui button" th:unless="${#httpServletRequest.remoteUser}" th:href="@{/registPage}">注册</a>
+    <a class="ui button" th:unless="${#httpServletRequest.remoteUser == null}" th:text="${#httpServletRequest.remoteUser}"></a>
+    <div class="or"></div>
+    <a class="ui positive button" th:unless="${#httpServletRequest.remoteUser}" th:href="@{/login}">登录</a>
+    <a class="ui positive button" th:unless="${#httpServletRequest.remoteUser == null}"
+       th:href="@{/logout}">退出</a>
+  </div>
+
+</div>
+
+<!-- pointing menu -->
+<div class="ui large secondary pointing menu" th:fragment="pmenu">
+
+  <a class="toc item">
+    <i class="sidebar icon"></i>
+  </a>
+  <a href="/" class="item">首页</a>
+  <a href="@{/chat}" class="item">畅聊</a>
+  <a href="/analysis" class="item">解析</a>
+  <a href="/searchView" class="item">搜索</a>
+  <div class="ui right-absolute buttons" style="margin-top: 5px;margin-right: 30px">
+    <a class="ui button" th:unless="${#httpServletRequest.remoteUser}" th:href="@{/registPage}">注册</a>
+    <a class="ui button" th:unless="${#httpServletRequest.remoteUser == null}" th:text="${#httpServletRequest.remoteUser}"></a>
+    <div class="or"></div>
+    <a class="ui positive button" th:unless="${#httpServletRequest.remoteUser}" th:href="@{/login}">登录</a>
+    <a class="ui positive button" th:unless="${#httpServletRequest.remoteUser == null}"
+       th:href="@{/logout}">退出</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+body {
+  background: url(/images/background-image.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+.form-signin {
+  max-width: 500px;
+  padding: 15px;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+
+.form-signin input {
+
+  color: #fff;
+  border-left-width: 0px;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(200, 200, 200, 0.5);
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.form-signin input:focus {
+  outline: none;
+  border-color: #00aaff;
+  box-shadow: 0 2px 0px rgba(0, 180, 255, 0.9);
+  border-radius: 0px;
+}
+
+.panel {
+  padding: 50px;
+  padding-top: 10px;
+  background-color: rgba(255, 255, 255, 0);
+
+}
+
+.bgcolor {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.form-signin .form-signin-heading {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2, .form-signin input[type="checkbox"] {
+  color: #fff;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  　　color: #999;
+}
+
+　　:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  　　color: #999;
+}
+
+　　::-moz-placeholder { /* Mozilla Firefox 19+ */
+  　　color: #999;
+}
+
+　　:-ms-input-placeholder { /* Internet Explorer 10+ */
+  　　color: #999;
+}

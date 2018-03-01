@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+  <!-- Site Properties -->
+  <title>FAN_VIDEO</title>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.css" rel="stylesheet"/>
+  <script src="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.js"></script>
+  <link href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.css" rel="stylesheet"/>
+  <script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.js"></script>
+  <link href="/css/fan.css" rel="stylesheet"/>
+  <script src="/js/siderbar.js"></script>
+
+
+</head>
+
+<body>
+
+<div th:replace="header :: fmenu"></div>
+
+<div th:replace="header :: smenu"></div>
+
+<div class="pusher" style="background: aliceblue">
+
+  <div th:replace="header :: pmenu"></div>
+
+  <div class="ui hidden divider"></div>
+
+  <div class="ui container">
+
+
+    <div class="ui right action left icon input" style="width: 50%;">
+      <i class="search icon"></i>
+      <input type="text" id="videoUrl" name="videoUrl"/>
+      <button class="ui teal right button" id="submitBtn" name="submitBtn"> 解析</button>
+    </div>
+
+
+  </div>
+</div>
+
+<script>
+  $("#submitBtn").click(function () {
+    var videoUrl = $("#videoUrl").val();
+    window.location.href = '/anay?rawUrl=' + videoUrl;
+
+  });
+</script>
+</body>
+</html>

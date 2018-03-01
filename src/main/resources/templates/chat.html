@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
+  <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <link href="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.css" rel="stylesheet"/>
+  <link href="css/index.css" rel="stylesheet"/>
+  <link href="/css/fan.css" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+<div class="bgcolor">
+  <div class="container">
+    <div th:replace="header :: fmenu"></div>
+
+
+      <div class="panel panel-default chat" style="overflow: hidden; margin-top: 60px">
+        <!--left panel start-->
+        <div class="panel panel-default friend"
+             style="float: left; overflow-y: scroll; overflow: auto">
+          <!--login user start-->
+          <div class="panel-heading myhead" style="background-color: rgba(150,200,255,1)">
+            <div style="display: inline-block; float: left">
+              <img src="/images/head.png" class="img-circle img-responsive oneself" height="64px"
+                   width="64px" style="margin: 0 10px;"/>
+            </div>
+            <div style="display:inline-block;  height: 64px;">
+              <p id="login-name" style="margin: 0; padding: 6px 0; font-size: 20px"
+                 th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></p>
+              <p style="margin-bottom: 0; overflow: hidden; height: 16px">Online</p>
+            </div>
+          </div>
+          <!--login user end-->
+
+          <!--friend start-->
+
+
+          <div class="panel-body" th:each="friend:${friendList}"
+               style="background-color: rgba(255,250,205,1);margin-top: 2px;padding: 5px;">
+            <button class="friend-btn">
+              <div style="display: inline-block; float: left">
+                <img src="/images/head.png" class="img-circle img-responsive oneself" height="38dp"
+                     width="38dp" style="margin-right: 10px;"/>
+              </div>
+              <div style="display:inline-block;  height: 38px;float: left">
+                <p id="friendName" style="margin: 0; padding: 3px 0; font-size: 12px"
+                   th:text="${friend.userName}"></p>
+                <p style="margin-bottom: 0; overflow: hidden; height: 20px;font-size: 10px">
+                  Online</p>
+              </div>
+            </button>
+          </div>
+          <!--friend end-->
+        </div>
+        <!--left panel start-->
+
+        <!--top panel start-->
+        <div class="panel panel-default chat_content"
+             style="float: left; overflow-y: scroll; overflow: auto" id="messageList">
+          <!-- one message start-->
+          <!-- time start-->
+          <!--<div class="panel-heading"-->
+          <!--style="background-color: rgba(255,250,205,0);padding: 0;padding-top: 3px;margin: 0">-->
+          <!--<p style="text-align: center;margin: 0">2017-05-02</p>-->
+          <!--</div>-->
+          <!--&lt;!&ndash; time start&ndash;&gt;-->
+          <!--&lt;!&ndash; message start&ndash;&gt;-->
+          <!--<div class="panel-body"-->
+          <!--style="background-color: rgba(255,250,205,0);margin-top: 5px;padding: 5px;">-->
+          <!--<div style="display: inline-block; float: left">-->
+          <!--<img src="/images/head.png" class="img-circle img-responsive oneself" height="38dp"-->
+          <!--width="38dp" style="margin-right: 10px;"/>-->
+          <!--</div>-->
+          <!--<div style="display:inline-block;  height: 38px;background-color: rgba(255,255,255,1)">-->
+          <!--<p style="margin: 10px;overflow: hidden;font-size: 16px;">Online</p>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!-- message end-->
+          <!-- one message end-->
+
+          <!-- revice message start-->
+          <!--<div class="panel-heading"-->
+          <!--style="background-color: rgba(255,250,205,0);padding: 0;padding-top: 3px">-->
+          <!--<p style="text-align: center;margin: 0">2017-05-02</p>-->
+          <!--</div>-->
+          <!--<div class="panel-body"-->
+          <!--style="background-color: rgba(255,250,205,0);margin-top: 5px;padding: 5px;">-->
+          <!--<div style="float: right">-->
+          <!--<img src="/images/head.png" class="img-circle img-responsive oneself" height="38dp"-->
+          <!--width="38dp" style="margin-left: 10px;"/>-->
+          <!--</div>-->
+          <!--<div-->
+          <!--style="float:right;display:inline-block;  height: 38px;background-color: rgba(255,255,255,1)">-->
+          <!--<p style="margin: 10px;overflow: hidden;font-size: 16px;">Online</p>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!-- revice message start-->
+        </div>
+        <!--top panel end-->
+
+
+        <!--bottom panel start-->
+        <div class="panel panel-default message" style="float: left">
+          <div class="row">
+            <div class="col-xs-9 col-md-10" style="padding-right: 0;padding-left: 15px">
+              <input type="text" class="form-control" placeholder="Message" id="message"/>
+            </div>
+            <div class="col-xs-3 col-md-2" style="padding: 0">
+              <button class="btn btn-primary btn-block" id="send"><span
+                  class="glyphicon glyphicon-send"></span> 发送
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--bottom panel end-->
+      </div>
+    <!--</div>-->
+  </div> <!-- /container -->
+</div>
+<script>
+  var stompClient = null;
+  var reciver = null;
+  function connect() {
+    var socket = new SockJS('/endpointGroup');
+    console.log("-------------------");
+    console.log(socket);
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (fream) {
+      console.log("Conected" + fream);
+      stompClient.subscribe("/groupChat/chat", function (response) {
+        showResponse(JSON.parse(response.body));
+      });
+      stompClient.subscribe("/user/pointChat/chat", function (response) {
+        showResponse(JSON.parse(response.body));
+      })
+    });
+  }
+  function disconnect() {
+    if (stompClient != null) {
+      stompClient.disconnect();
+    }
+  }
+  function showResponse(message) {
+    var str;
+    if (message.sender == "all") {
+      str = message.content;
+    } else if (message.sender == "robot") {
+      var msg = JSON.parse(message.content);
+      var code = msg.code;
+      switch (code) {
+        case 100000:
+          str = msg.text;
+          break;
+        case 200000:
+        case 302000:
+        default:
+          str = '<a href="' + msg.url + '" target="_blank">' + msg.text + '</a><br/>';
+          break;
+      }
+    } else {
+      str = message.content;
+    }
+    var login_name = $('#login-name').val();
+    var reciver = message.reciver;
+    if (login_name == reciver) {
+      $("#messageList").append(
+          '<div class="panel-heading" style="background-color:rgba(255,250,205,0);padding:0;padding-top:3px;margin:0">'
+          +
+          '<p style="text-align: center;margin: 0">2017-05-02</p>' +
+          '</div>' +
+          '<div class="panel-body" style="background-color: rgba(255,250,205,0);margin-top: 5px;padding: 5px;">'
+          +
+          '<div style="float: right">' +
+          '<img src="/images/head.png" class="img-circle img-responsive oneself" height="38dp" width="38dp" style="margin-left: 10px;"/>'
+          +
+          '</div><div style="float:right;display:inline-block;  height: 38px;background-color: rgba(255,255,255,1)">'
+          +
+          '<p style="margin: 10px;overflow: hidden;font-size: 16px;">' + str + '</p>' +
+          '</div></div><br/>');
+    } else {
+      $("#messageList").append(
+          '<div class="panel-heading" style="background-color: rgba(255,250,205,0);padding: 0;padding-top: 3px;margin: 0">'
+          +
+          '<p style="text-align: center;margin: 0">2017-05-02</p>' +
+          '</div>' +
+          '<div class="panel-body" style="background-color: rgba(255,250,205,0);margin-top: 5px;padding: 5px;">'
+          +
+          '<div style="display:inline-block; float: left">' +
+          '<img src="/images/head.png" class="img-circle img-responsive oneself" height="38dp" width="38dp" style="margin-right: 10px;"/>'
+          +
+          '</div> <div style="display:inline-block;  height: 38px;background-color: rgba(255,255,255,1)">'
+          +
+          '<p style="margin: 10px;overflow: hidden;font-size: 16px;">' + str + '</p>' +
+          '</div></div><br/>');
+    }
+  }
+  $(function () {
+    connect();
+    $(".friend-btn").click(function () {
+      var target = $(this).find("#friendName").text();
+      if (target == "群聊") {
+        reciver = "all";
+      } else if (target == "小R [机器人]") {
+        reciver = "robot";
+      } else {
+        reciver = target;
+      }
+    });
+    $("#send").click(function () {
+      var content = $('#message').val();
+      if (reciver == "all") {
+        stompClient.send("/sendToAll", {}, JSON.stringify({'content': content}));
+      } else if (reciver == "robot") {
+        stompClient.send("/sendToPoint", {},
+            JSON.stringify({'reciver': reciver, "content": content}));
+      } else {
+        stompClient.send("/sendToPoint", {},
+            JSON.stringify({'reciver': reciver, "content": content}));
+      }
+
+    })
+  })
+</script>
+
+</body>
+</html>

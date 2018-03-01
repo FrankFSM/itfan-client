@@ -1,0 +1,11 @@
+server:
+  port: 9099
+spring:
+  application:
+    name: itfan-client
+logging:
+  level:
+    org.springframework.web: debug
+management:
+  security:
+    enabled: false
